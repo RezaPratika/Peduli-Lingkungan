@@ -1,6 +1,6 @@
 import 'package:capstone/common/style.dart';
 import 'package:capstone/ui%20admin/home_page_admin.dart';
-import 'package:capstone/ui%20user/halamanutama.dart';
+import 'package:capstone/ui%20user/home_page_user.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
