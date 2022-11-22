@@ -1,5 +1,8 @@
+import 'package:capstone/common/style.dart';
+import 'package:capstone/home_page.dart';
 import 'package:capstone/theme/font.dart';
-import 'package:capstone/ui/halamanutama.dart';
+import 'package:capstone/ui%20user/halamanutama.dart';
+import 'package:capstone/ui%20admin/home_page_admin.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +16,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(textTheme: myTextTheme),
-      home: MainPage()
-    );
+        title: 'Peduli Lungkungan',
+        theme: ThemeData(
+          textTheme: myTextTheme,
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+                primary: ColorSelect().primaryColor,
+                onPrimary: ColorSelect().onPrimary,
+                secondary: ColorSelect().secondaryColor,
+              ),
+        ),
+        home: const HomePage());
   }
 }
-
