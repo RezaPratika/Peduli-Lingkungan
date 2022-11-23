@@ -1,5 +1,4 @@
 import 'package:capstone/common/style.dart';
-import 'package:capstone/theme/font.dart';
 import 'package:capstone/ui/user_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
                 secondary: ColorSelect().secondaryColor,
               ),
         ),
-        home: const HomePageUser());
+        home: const HomePageUser()
+        );
   }
 }

@@ -12,47 +12,69 @@ class ColorSelect {
   Color secondaryColor = const Color.fromRGBO(73, 73, 73, 1);
   Color colorBackGround = const Color.fromARGB(255, 216, 232, 255);
 }
-
-final styleText = TextTheme(
-    headline1: GoogleFonts.poppins(
-        fontSize: 93,
-        fontWeight: FontWeight.w300,
-        letterSpacing: -1.5,
-        color: Colors.white),
-    headline2: GoogleFonts.poppins(
-        fontSize: 58,
-        fontWeight: FontWeight.w300,
-        letterSpacing: -0.5,
-        color: Colors.white),
-    headline3: GoogleFonts.poppins(fontSize: 46, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.poppins(
-      fontSize: 33,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.25,
-    ),
-    headline5: GoogleFonts.poppins(fontSize: 23, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.poppins(
-      fontSize: 19,
-      fontWeight: FontWeight.w500,
-      letterSpacing: 0.15,
-    ),
-    subtitle1: GoogleFonts.poppins(
-      fontSize: 15,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.15,
-    ),
-    subtitle2: GoogleFonts.poppins(
-        fontSize: 13, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.nunitoSans(
-        fontSize: 17, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.nunitoSans(
-        fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.nunitoSans(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 1.25,
-        color: Colors.white),
-    caption: GoogleFonts.nunitoSans(
-        fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.nunitoSans(
-        fontSize: 11, fontWeight: FontWeight.w400, letterSpacing: 1.5));
+final myTextTheme = TextTheme(
+  headline1: GoogleFonts.josefinSans(
+    fontSize: 123,
+    fontWeight: FontWeight.w300,
+    letterSpacing: -1.5
+  ),
+  headline2: GoogleFonts.josefinSans(
+    fontSize: 77,
+    fontWeight: FontWeight.w300,
+    letterSpacing: -0.5
+  ),
+  headline3: GoogleFonts.josefinSans(
+    fontSize: 61,
+    fontWeight: FontWeight.w400
+  ),
+  headline4: GoogleFonts.josefinSans(
+    fontSize: 43,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25
+  ),
+  headline5: GoogleFonts.josefinSans(
+    fontSize: 31,
+    fontWeight: FontWeight.w400
+  ),
+  headline6: GoogleFonts.josefinSans(
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.15,
+    color: Colors.white
+  ),
+  subtitle1: GoogleFonts.josefinSans(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.15
+  ),
+  subtitle2: GoogleFonts.josefinSans(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.1
+  ),
+  bodyText1: GoogleFonts.lato(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5
+  ),
+  bodyText2: GoogleFonts.lato(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25
+  ),
+  button: GoogleFonts.lato(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 1.25
+  ),
+  caption: GoogleFonts.lato(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.4
+  ),
+  overline: GoogleFonts.lato(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 1.5
+  ),
+);
