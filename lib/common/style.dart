@@ -40,41 +40,24 @@ final myTextTheme = TextTheme(
     fontSize: 26,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
-    color: Colors.white
   ),
-  subtitle1: GoogleFonts.josefinSans(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.15
-  ),
-  subtitle2: GoogleFonts.josefinSans(
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 0.1
-  ),
-  bodyText1: GoogleFonts.lato(
-    fontSize: 17,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.5
-  ),
-  bodyText2: GoogleFonts.lato(
-    fontSize: 15,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.25
-  ),
-  button: GoogleFonts.lato(
-    fontSize: 15,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 1.25
-  ),
-  caption: GoogleFonts.lato(
-    fontSize: 13,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.4
-  ),
-  overline: GoogleFonts.lato(
-    fontSize: 10,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 1.5
-  ),
-);
+  subtitle1: GoogleFonts.poppins(
+      fontSize: 15,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.15,
+    ),
+    subtitle2: GoogleFonts.poppins(
+        fontSize: 13, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+    bodyText1: GoogleFonts.nunitoSans(
+        fontSize: 17, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    bodyText2: GoogleFonts.nunitoSans(
+        fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    button: GoogleFonts.nunitoSans(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25,
+        color: Colors.white),
+    caption: GoogleFonts.nunitoSans(
+        fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.4),
+    overline: GoogleFonts.nunitoSans(
+        fontSize: 11, fontWeight: FontWeight.w400, letterSpacing: 1.5));
