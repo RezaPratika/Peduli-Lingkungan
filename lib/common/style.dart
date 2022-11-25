@@ -11,6 +11,7 @@ class ColorSelect {
   Color onPrimary = Color.fromARGB(255, 5, 5, 6);
   Color secondaryColor = const Color.fromRGBO(73, 73, 73, 1);
   Color colorBackGround = const Color.fromARGB(255, 216, 232, 255);
+  Color buttonColor = const Color(0xff52a392);
 }
 final myTextTheme = TextTheme(
   headline1: GoogleFonts.josefinSans(

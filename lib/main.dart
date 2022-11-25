@@ -1,5 +1,5 @@
 import 'package:capstone/common/style.dart';
-import 'package:capstone/ui/user_ui.dart';
+import 'package:capstone/ui/ui_user.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Peduli Lungkungan',
         theme: ThemeData(
+          buttonTheme: ButtonThemeData(
+            buttonColor: ColorSelect().buttonColor
+          ),
           textTheme: myTextTheme,
           colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: ColorSelect().primaryColor,
