@@ -1,6 +1,8 @@
 import 'package:capstone/ui/success_ui.dart';
 import 'package:flutter/material.dart';
 
+import '../component/checkbox.dart';
+
 class HomePageUser extends StatefulWidget {
   const HomePageUser({super.key});
 
@@ -10,10 +12,9 @@ class HomePageUser extends StatefulWidget {
 
 class _HomePageUserState extends State<HomePageUser> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  String nama = '';
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final bodyHeight = mediaQueryHeight - MediaQuery.of(context).padding.top;
     final bodywidth = MediaQuery.of(context).size.width;
@@ -202,13 +203,7 @@ class _HomePageUserState extends State<HomePageUser> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Checkbox(
-                                  value: isChecked,
-                                  onChanged: (value) {
-                                    isChecked = value!;
-                                    setState(() {
-                                    });(value);
-                                  }),
+                              CheckBoxForm(),
                               Expanded(
                                 child: Container(
                                   margin: const EdgeInsets.all(4),
