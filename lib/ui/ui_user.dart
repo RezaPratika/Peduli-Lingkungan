@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:capstone/ui/success_ui.dart';
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../component/checkbox.dart';
 
 class HomePageUser extends StatefulWidget {
@@ -11,6 +13,8 @@ class HomePageUser extends StatefulWidget {
 }
 
 class _HomePageUserState extends State<HomePageUser> {
+  String? imagePath;
+
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   bool isChecked = false;
   @override
@@ -18,14 +22,13 @@ class _HomePageUserState extends State<HomePageUser> {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final bodyHeight = mediaQueryHeight - MediaQuery.of(context).padding.top;
     final bodywidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
         body: Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: _formKey,
-          child: Stack(
-            children: [
-              CustomScrollView(slivers: [
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: _formKey,
+      child: Stack(children: [
+        CustomScrollView(slivers: [
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
@@ -59,7 +62,7 @@ class _HomePageUserState extends State<HomePageUser> {
                 Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Container(
-                    height: 45,
+                    height: 100,
                     child: Row(
                       children: [
                         SizedBox(
@@ -70,17 +73,31 @@ class _HomePageUserState extends State<HomePageUser> {
                                 borderRadius: BorderRadius.circular(5),
                                 side: const BorderSide(color: Colors.black)),
                             color: const Color(0xff52a392),
-                            child: const Center(
-                              child: SizedBox(
-                                child: Text('Gambar'),
-                              ),
-                            ),
+                            child: TextButton(
+                                onPressed: () {pickMedia();},
+                                child: Text("Gambar",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1),
+                                        style: TextButton.styleFrom(
+                                  foregroundColor: Colors.black,
+                                  backgroundColor: Colors.greenAccent)),
                           ),
                         ),
-                        Text(
-                          "Sertakan Gambar",
-                          style: Theme.of(context).textTheme.subtitle1,
-                        )
+                        (imagePath != null) ? 
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox( width: bodywidth * 0.5,child: Image.file(File(imagePath!))),
+                                )
+                                :
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(child: Container(width: 100, height: 100,
+                                    child: Image.asset(
+                          'images/add-image.png',
+                        ),
+                                  ),),
+                                )
                       ],
                     ),
                   ),
@@ -101,17 +118,15 @@ class _HomePageUserState extends State<HomePageUser> {
                             hintText: 'Nama',
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             prefixIcon: const Icon(Icons.people)),
-                            validator: (nama){
-                              if (nama!.isEmpty ){
-                                return 'Tolong input nama kamu';
-                              }
-                              else if (nama!.isNotEmpty && nama!.length < 3){
-                                return 'Tolong input nama dengan minimal 3 huruf';
-                              }
-                              else {
-                                return null;
-                              }
-                            },
+                        validator: (nama) {
+                          if (nama!.isEmpty) {
+                            return 'Tolong isi nama anda';
+                          } else if (nama!.isNotEmpty && nama!.length < 3) {
+                            return 'Tolong isi nama dengan minimal 3 huruf';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -126,19 +141,19 @@ class _HomePageUserState extends State<HomePageUser> {
                               borderSide: BorderSide(color: Colors.black)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
-                              borderSide: const BorderSide(color: Colors.black)),
+                              borderSide:
+                                  const BorderSide(color: Colors.black)),
                           hintText: 'Lokasi',
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           prefixIcon: const Icon(Icons.location_on),
                         ),
-                        validator: (lokasi){
-                              if (lokasi!.isEmpty ){
-                                return 'Tolong berikan Lokasi anda';
-                              }
-                              else {
-                                return null;
-                              }
-                            },
+                        validator: (lokasi) {
+                          if (lokasi!.isEmpty) {
+                            return 'Tolong isi dengan lokasi anda';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -153,19 +168,19 @@ class _HomePageUserState extends State<HomePageUser> {
                               borderSide: BorderSide(color: Colors.black)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
-                              borderSide: const BorderSide(color: Colors.black)),
+                              borderSide:
+                                  const BorderSide(color: Colors.black)),
                           hintText: 'No Hp',
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           prefixIcon: const Icon(Icons.phone),
                         ),
-                        validator: (noHp){
-                              if (noHp!.isEmpty ){
-                                return 'Tolong berikan Nomor HP anda';
-                              }
-                              else {
-                                return null;
-                              }
-                            },
+                        validator: (noHp) {
+                          if (noHp!.isEmpty) {
+                            return 'Tolong isi dengan nomor HP anda';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -184,14 +199,13 @@ class _HomePageUserState extends State<HomePageUser> {
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black)),
                           ),
-                          validator: (des){
-                              if (des!.isEmpty ){
-                                return 'Tolong berikan Deskirpsi Masalah anda';
-                              }
-                              else {
-                                return null;
-                              }
-                            },
+                          validator: (des) {
+                            if (des!.isEmpty) {
+                              return 'Tolong berikan Deskirpsi Masalah anda';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -209,8 +223,9 @@ class _HomePageUserState extends State<HomePageUser> {
                                   margin: const EdgeInsets.all(4),
                                   child: Text(
                                       "Saya Menyatakan Laporan diatas benar",
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
                                 ),
                               )
                             ],
@@ -233,13 +248,15 @@ class _HomePageUserState extends State<HomePageUser> {
                             padding: const EdgeInsets.all(15.0),
                             child: ElevatedButton(
                                 onPressed: (() {
-                                  final isValidForm = _formKey.currentState!.validate();
-                                  if (isValidForm){
+                                  final isValidForm =
+                                      _formKey.currentState!.validate();
+                                  if (isValidForm) {
                                     Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SuccessScreen()),
-                                  );
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SuccessScreen()),
+                                    );
                                   }
                                 }),
                                 style: TextButton.styleFrom(
@@ -247,8 +264,9 @@ class _HomePageUserState extends State<HomePageUser> {
                                   backgroundColor: Colors.greenAccent,
                                 ),
                                 child: Text("Lapor",
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1))),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1))),
                       ],
                     ),
                   ),
@@ -256,8 +274,17 @@ class _HomePageUserState extends State<HomePageUser> {
               ],
             ),
           ),
-              ]),
-            ]),
-        ));
+        ]),
+      ]),
+    ));
+  }
+  void pickMedia() async{
+    XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null){
+      imagePath = file.path;
+      setState(() {
+        
+      });
+    }
   }
 }
