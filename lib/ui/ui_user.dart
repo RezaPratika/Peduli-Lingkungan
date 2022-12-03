@@ -1,9 +1,13 @@
 import 'dart:io';
 
 import 'package:capstone/ui/success_ui.dart';
+import 'package:dio/adapter.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../component/checkbox.dart';
+import '../model/laporan.dart';
+import '../repository/repository.dart';
 
 class HomePageUser extends StatefulWidget {
   const HomePageUser({super.key});
@@ -13,6 +17,21 @@ class HomePageUser extends StatefulWidget {
 }
 
 class _HomePageUserState extends State<HomePageUser> {
+  void main() {
+  final dio = Dio(); // variable ini yang akan anda gunakan untuk HIT API
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+      (HttpClient client) {
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    return client;
+  };
+}
+  //Repository repository = Repository();
+  Laporan? laporan;
+  TextEditingController namaController = TextEditingController();
+  TextEditingController lokasiController = TextEditingController();
+  TextEditingController nomorhpController = TextEditingController();
+  TextEditingController deskripsiController = TextEditingController();
   String? imagePath;
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
@@ -47,7 +66,7 @@ class _HomePageUserState extends State<HomePageUser> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'images/logo-peduli-lingkungan.jpg',
+                          'assets/logo-peduli-lingkungan.jpg',
                         ),
                         Flexible(
                           child: Text(
@@ -74,30 +93,36 @@ class _HomePageUserState extends State<HomePageUser> {
                                 side: const BorderSide(color: Colors.black)),
                             color: const Color(0xff52a392),
                             child: TextButton(
-                                onPressed: () {pickMedia();},
+                                onPressed: () {
+                                  pickMedia();
+                                },
                                 child: Text("Gambar",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .subtitle1),
-                                        style: TextButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.greenAccent)),
+                                    style:
+                                        Theme.of(context).textTheme.subtitle1),
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.black,
+                                    backgroundColor: Colors.greenAccent)),
                           ),
                         ),
-                        (imagePath != null) ? 
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox( width: bodywidth * 0.5,child: Image.file(File(imagePath!))),
-                                )
-                                :
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Center(child: Container(width: 100, height: 100,
+                        (imagePath != null)
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                    width: bodywidth * 0.5,
+                                    child: Image.file(File(imagePath!))),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Container(
+                                    width: 100,
+                                    height: 100,
                                     child: Image.asset(
-                          'images/add-image.png',
-                        ),
-                                  ),),
-                                )
+                                      'assets/add-image.png',
+                                    ),
+                                  ),
+                                ),
+                              )
                       ],
                     ),
                   ),
@@ -108,6 +133,7 @@ class _HomePageUserState extends State<HomePageUser> {
                     child: Container(
                       color: Colors.white,
                       child: TextFormField(
+                        controller: namaController,
                         decoration: InputDecoration(
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black)),
@@ -135,6 +161,7 @@ class _HomePageUserState extends State<HomePageUser> {
                     child: Container(
                       color: Colors.white,
                       child: TextFormField(
+                        controller: lokasiController,
                         maxLines: null,
                         decoration: InputDecoration(
                           enabledBorder: const OutlineInputBorder(
@@ -162,6 +189,7 @@ class _HomePageUserState extends State<HomePageUser> {
                     child: Container(
                       color: Colors.white,
                       child: TextFormField(
+                        controller: nomorhpController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           enabledBorder: const OutlineInputBorder(
@@ -191,6 +219,7 @@ class _HomePageUserState extends State<HomePageUser> {
                       padding: const EdgeInsets.all(5.0),
                       child: Container(
                         child: TextFormField(
+                          controller: deskripsiController,
                           maxLines: null,
                           decoration: InputDecoration(
                             hintText: "Deskripsi Masalah",
@@ -247,17 +276,33 @@ class _HomePageUserState extends State<HomePageUser> {
                         Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: ElevatedButton(
-                                onPressed: (() {
+                                onPressed: (() async {
                                   final isValidForm =
                                       _formKey.currentState!.validate();
+                                  Laporan? result = await Repository.createLaporan(namaController.text, lokasiController.text, nomorhpController.text, deskripsiController.text);
+                                  /*bool response = await repository.postData(
+                                      _namaController.text,
+                                      _lokasiController.text,
+                                      _nomorhpController.text,
+                                      _deskripsiController.text);*/
                                   if (isValidForm) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SuccessScreen()),
-                                    );
-                                  }
+                                    if(result !=null){
+                                      setState(() {
+                                        laporan = result;
+                                      });
+                                    }
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SuccessScreen()),
+                                      );
+                                      /*if (response) {
+                                    
+                                  } else {
+                                    print('Laporan gagal');
+                                  }*/
+                                    }
                                 }),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.black,
@@ -278,13 +323,12 @@ class _HomePageUserState extends State<HomePageUser> {
       ]),
     ));
   }
-  void pickMedia() async{
+
+  void pickMedia() async {
     XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (file != null){
+    if (file != null) {
       imagePath = file.path;
-      setState(() {
-        
-      });
+      setState(() {});
     }
   }
 }

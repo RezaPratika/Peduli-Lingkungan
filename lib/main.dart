@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:capstone/common/style.dart';
 import 'package:capstone/ui/ui_user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  ByteData data = await PlatformAssetBundle().load('assets/lets-encrypt-r3.pem');
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   runApp(const MyApp());
 }
 
@@ -27,4 +33,5 @@ class MyApp extends StatelessWidget {
         home: const HomePageUser()
         );
   }
+  
 }

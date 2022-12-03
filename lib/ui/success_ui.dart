@@ -10,7 +10,7 @@ class SuccessScreen extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            Image.asset('images/success.png'),
+            Image.asset('assets/success.png'),
             Text(
               "Laporan Anda Berhasil dikirim",
               style: Theme.of(context).textTheme.headline6,
