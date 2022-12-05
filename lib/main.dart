@@ -1,14 +1,13 @@
-import 'dart:io';
-
 import 'package:capstone/common/style.dart';
 import 'package:capstone/ui/ui_user.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'ui/success_ui.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  ByteData data = await PlatformAssetBundle().load('assets/lets-encrypt-r3.pem');
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -19,6 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Peduli Lungkungan',
+        initialRoute: '/',
+        routes: {
+          '/homepageuser': (context) => const HomePageUser(),
+          '/success': (context) => const SuccessScreen(),
+        },
         theme: ThemeData(
           buttonTheme: ButtonThemeData(
             buttonColor: ColorSelect().buttonColor

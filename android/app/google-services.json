@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292080878831",
+    "project_id": "peduli-lingkungan-11dba",
+    "storage_bucket": "peduli-lingkungan-11dba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292080878831:android:23b40b2b692787f96d471a",
+        "android_client_info": {
+          "package_name": "com.example.capstone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292080878831-7k0rna8o9sj8hr0p8gfildv22ulkvr6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVExcF_RVijkvtxBiGWrGsdk0H1UTJTAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292080878831-7k0rna8o9sj8hr0p8gfildv22ulkvr6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

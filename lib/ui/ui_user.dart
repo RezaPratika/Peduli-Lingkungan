@@ -1,13 +1,10 @@
 import 'dart:io';
 
-import 'package:capstone/ui/success_ui.dart';
-import 'package:dio/adapter.dart';
-import 'package:dio/dio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../component/checkbox.dart';
-import '../model/laporan.dart';
-import '../repository/repository.dart';
 
 class HomePageUser extends StatefulWidget {
   const HomePageUser({super.key});
@@ -17,27 +14,20 @@ class HomePageUser extends StatefulWidget {
 }
 
 class _HomePageUserState extends State<HomePageUser> {
-  void main() {
-  final dio = Dio(); // variable ini yang akan anda gunakan untuk HIT API
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-      (HttpClient client) {
-    client.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    return client;
-  };
-}
-  //Repository repository = Repository();
-  Laporan? laporan;
+  XFile? file;
   TextEditingController namaController = TextEditingController();
   TextEditingController lokasiController = TextEditingController();
   TextEditingController nomorhpController = TextEditingController();
   TextEditingController deskripsiController = TextEditingController();
+
   String? imagePath;
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference laporan = firestore.collection('laporan');
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final bodyHeight = mediaQueryHeight - MediaQuery.of(context).padding.top;
     final bodywidth = MediaQuery.of(context).size.width;
@@ -93,8 +83,13 @@ class _HomePageUserState extends State<HomePageUser> {
                                 side: const BorderSide(color: Colors.black)),
                             color: const Color(0xff52a392),
                             child: TextButton(
-                                onPressed: () {
-                                  pickMedia();
+                                onPressed: () async {
+                                  file = await ImagePicker()
+                                      .pickImage(source: ImageSource.gallery);
+                                  if (file != null) {
+                                    imagePath = file!.path;
+                                    setState(() {});
+                                  }
                                 },
                                 child: Text("Gambar",
                                     style:
@@ -277,32 +272,36 @@ class _HomePageUserState extends State<HomePageUser> {
                             padding: const EdgeInsets.all(15.0),
                             child: ElevatedButton(
                                 onPressed: (() async {
+                                  if (imagePath == null) {
+                                    return _editAlert();
+                                  }
                                   final isValidForm =
                                       _formKey.currentState!.validate();
-                                  Laporan? result = await Repository.createLaporan(namaController.text, lokasiController.text, nomorhpController.text, deskripsiController.text);
-                                  /*bool response = await repository.postData(
-                                      _namaController.text,
-                                      _lokasiController.text,
-                                      _nomorhpController.text,
-                                      _deskripsiController.text);*/
                                   if (isValidForm) {
-                                    if(result !=null){
-                                      setState(() {
-                                        laporan = result;
-                                      });
-                                    }
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SuccessScreen()),
-                                      );
-                                      /*if (response) {
-                                    
-                                  } else {
-                                    print('Laporan gagal');
-                                  }*/
-                                    }
+                                    Reference referenceRoot =
+                                        FirebaseStorage.instance.ref();
+                                    Reference referenceDirImages =
+                                        referenceRoot.child('gambar');
+
+                                    Reference referenceImageToUpload =
+                                        referenceDirImages
+                                            .child(DateTime.now().toString());
+
+                                    try {
+                                      await referenceImageToUpload
+                                          .putFile(File(file!.path));
+                                      imagePath = await referenceImageToUpload
+                                          .getDownloadURL();
+                                    } catch (e) {}
+                                    laporan.add({
+                                      'nama': namaController.text,
+                                      'lokasi': lokasiController.text,
+                                      'nomorhp': nomorhpController.text,
+                                      'deskripsi': deskripsiController.text,
+                                      'gambar': imagePath,
+                                    });
+                                  }
+                                  Navigator.pushReplacementNamed(context, '/success');
                                 }),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.black,
@@ -323,12 +322,21 @@ class _HomePageUserState extends State<HomePageUser> {
       ]),
     ));
   }
-
-  void pickMedia() async {
-    XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (file != null) {
-      imagePath = file.path;
-      setState(() {});
-    }
+  _editAlert(){
+    var _alert = AlertDialog(
+      title: Text('Mohon diperhatikan'),
+      content: Text('Tolong untuk menambahkan bukti foto/gambar'),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.of(context).pop();
+        }, child: Text('Kembali'))
+      ],
+    );
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return _alert;
+      }
+    );
   }
 }

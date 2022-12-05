@@ -1,4 +1,3 @@
-import 'package:capstone/ui/ui_user.dart';
 import 'package:flutter/material.dart';
 
 class SuccessScreen extends StatelessWidget {
@@ -27,11 +26,7 @@ class SuccessScreen extends StatelessWidget {
                 children: [
                   ElevatedButton(
                                 onPressed: (() {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomePageUser()),
-                                  );
+                                  Navigator.popAndPushNamed(context, '/homepageuser');
                                 }),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.black,
