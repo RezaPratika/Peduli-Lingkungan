@@ -19,11 +19,11 @@ class _HomePageUserState extends State<HomePageUser> {
   TextEditingController lokasiController = TextEditingController();
   TextEditingController nomorhpController = TextEditingController();
   TextEditingController deskripsiController = TextEditingController();
+  bool checkBoxValue = false;
 
   String? imagePath;
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -272,36 +272,39 @@ class _HomePageUserState extends State<HomePageUser> {
                             padding: const EdgeInsets.all(15.0),
                             child: ElevatedButton(
                                 onPressed: (() async {
-                                  if (imagePath == null) {
-                                    return _editAlert();
-                                  }
                                   final isValidForm =
                                       _formKey.currentState!.validate();
                                   if (isValidForm) {
-                                    Reference referenceRoot =
-                                        FirebaseStorage.instance.ref();
-                                    Reference referenceDirImages =
-                                        referenceRoot.child('gambar');
+                                    if (imagePath == null) {
+                                      return _editAlert();
+                                    } else {
+                                      Reference referenceRoot =
+                                          FirebaseStorage.instance.ref();
+                                      Reference referenceDirImages =
+                                          referenceRoot.child('gambar');
 
-                                    Reference referenceImageToUpload =
-                                        referenceDirImages
-                                            .child(DateTime.now().toString());
+                                      Reference referenceImageToUpload =
+                                          referenceDirImages.child(
+                                              DateTime.now().toString() +
+                                                  ".jpg");
 
-                                    try {
-                                      await referenceImageToUpload
-                                          .putFile(File(file!.path));
-                                      imagePath = await referenceImageToUpload
-                                          .getDownloadURL();
-                                    } catch (e) {}
-                                    laporan.add({
-                                      'nama': namaController.text,
-                                      'lokasi': lokasiController.text,
-                                      'nomorhp': nomorhpController.text,
-                                      'deskripsi': deskripsiController.text,
-                                      'gambar': imagePath,
-                                    });
+                                      try {
+                                        await referenceImageToUpload
+                                            .putFile(File(file!.path));
+                                        imagePath = await referenceImageToUpload
+                                            .getDownloadURL();
+                                      } catch (e) {}
+                                      laporan.add({
+                                        'nama': namaController.text,
+                                        'lokasi': lokasiController.text,
+                                        'nomorhp': nomorhpController.text,
+                                        'deskripsi': deskripsiController.text,
+                                        'gambar': imagePath,
+                                      });
+                                      Navigator.pushReplacementNamed(
+                                          context, '/success');
+                                    }
                                   }
-                                  Navigator.pushReplacementNamed(context, '/success');
                                 }),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.black,
@@ -322,21 +325,23 @@ class _HomePageUserState extends State<HomePageUser> {
       ]),
     ));
   }
-  _editAlert(){
+
+  _editAlert() {
     var _alert = AlertDialog(
       title: Text('Mohon diperhatikan'),
       content: Text('Tolong untuk menambahkan bukti foto/gambar'),
       actions: [
-        TextButton(onPressed: (){
-          Navigator.of(context).pop();
-        }, child: Text('Kembali'))
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Kembali'))
       ],
     );
     return showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return _alert;
-      }
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return _alert;
+        });
   }
 }
