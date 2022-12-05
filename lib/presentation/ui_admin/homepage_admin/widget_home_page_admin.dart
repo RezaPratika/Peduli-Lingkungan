@@ -1,9 +1,12 @@
 import 'package:capstone/data/sumber.dart';
+import 'package:capstone/presentation/ui_admin/detail_page_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/common/style.dart';
 
 class WidgetHomePageAdmin extends StatelessWidget {
-  const WidgetHomePageAdmin({Key? key}) : super(key: key);
+  const WidgetHomePageAdmin({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +69,25 @@ class WidgetHomePageAdmin extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     itemCount: entries.length,
                     itemBuilder: (BuildContext context, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            height: 70,
-                            width: 180,
-                            color: Colors.amber[colorCodes[index]],
-                            child:
-                                Center(child: Text('Entry ${entries[index]}')),
-                          ),
-                        ],
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DetailPageAdmin()));
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 70,
+                              width: 180,
+                              color: Colors.amber[colorCodes[index]],
+                              child: Center(
+                                  child: Text('Entry ${entries[index]}')),
+                            ),
+                          ],
+                        ),
                       );
                     }),
               ),

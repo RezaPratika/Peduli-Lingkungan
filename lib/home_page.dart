@@ -1,10 +1,14 @@
 import 'package:capstone/common/style.dart';
-import 'package:capstone/ui%20admin/home_page_admin.dart';
-import 'package:capstone/ui%20user/home_page_user.dart';
+import 'package:capstone/ui_user/home_page_user.dart';
+import 'package:capstone/presentation/ui_admin/homepage_admin/layout_builder_admin.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  static const rOUTENAME = '/HOME';
+
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +16,15 @@ class HomePage extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const HomepagePemerintah()),
-              );
+              Navigator.pushNamed(context, ResponsivePage.rOUTENAME);
             },
             child: Text('Halaman Admin', style: styleText.button)),
         const SizedBox(width: 20),
         ElevatedButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(builder: (context) => const HomePageUser()),
+                HomePageUser.rOUTENAME,
               );
             },
             child: Text('Halaman User', style: styleText.button))

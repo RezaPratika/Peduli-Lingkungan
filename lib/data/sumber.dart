@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+final controllerScroll = ScrollController();
+
 final List<String> entries = <String>[
   'A',
   'B',
@@ -28,7 +30,6 @@ final List<int> colorCodes = <int>[
   500,
   100
 ];
-final controllerScroll = ScrollController();
 
 class Note {
   late int? id;

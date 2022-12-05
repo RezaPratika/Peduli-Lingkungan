@@ -1,4 +1,4 @@
-import 'package:capstone/widget%20admin/widget_home_page_admin.dart';
+import 'package:capstone/presentation/ui_admin/homepage_admin/widget_home_page_admin.dart';
 import 'package:flutter/material.dart';
 
 class HomepagePemerintah extends StatefulWidget {

@@ -1,8 +1,9 @@
 import 'package:capstone/common/style.dart';
 import 'package:capstone/home_page.dart';
+import 'package:capstone/presentation/ui_admin/gridview_admin.dart';
+import 'package:capstone/presentation/ui_admin/homepage_admin/layout_builder_admin.dart';
 import 'package:capstone/theme/font.dart';
-import 'package:capstone/ui%20user/home_page_user.dart';
-import 'package:capstone/ui%20admin/home_page_admin.dart';
+import 'package:capstone/ui_user/home_page_user.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +26,12 @@ class MyApp extends StatelessWidget {
                 secondary: ColorSelect().secondaryColor,
               ),
         ),
-        home: const HomePage());
+        initialRoute: HomePage.rOUTENAME,
+        routes: {
+          HomePage.rOUTENAME: (context) => const HomePage(),
+          HomePageUser.rOUTENAME: (context) => const HomePageUser(),
+          ResponsivePage.rOUTENAME: (context) => const ResponsivePage(),
+          GridviewAdmin.rOUTENAME: (context) => const GridviewAdmin(),
+        });
   }
 }

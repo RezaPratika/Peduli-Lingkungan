@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:capstone/common/style.dart';
 
 class HomePageUser extends StatelessWidget {
+  static const rOUTENAME = '/userpage';
   const HomePageUser({super.key});
 
   @override
