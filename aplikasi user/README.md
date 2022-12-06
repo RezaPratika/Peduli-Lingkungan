@@ -55,3 +55,12 @@ Repository ini adalah proyek Capstone, sebuah pemantapan proses Pembelajaran den
       Membutuhkan waktu yang lebih untuk menindaklanjuti permasalahan jika aplikasi menerima banyak laporan.
       Tingkat kepedulian masyarakat yang rendah terhadap masalah lingkungan tercemar sehingga kurangnya kebutuhan dalam menggunakan aplikasi ini.
       Kurangnya antusias masyarakat terhadap aplikasi yang menjadi sarana untuk dapat melaporkan permasalahan pencemaran lingkungan.
+
+
+### Cara Menjalankan Aplikasi Admin
+![aplikasi admin](https://user-images.githubusercontent.com/100017699/205928377-48723a0c-b116-46c5-9959-9e074263af29.gif)
+
+
+
+### Contoh Penggunaan Aplikasi Admin dan User
+![Peduli lingkungan final](https://user-images.githubusercontent.com/100017699/205928291-d5396b69-ce84-44ab-97e3-ac7de09ced7e.gif)
