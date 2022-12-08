@@ -33,14 +33,14 @@ Melihat postingan informasi melalui sosial media banyaknya lingkungan yang sehar
 </p>
 <br>
 
-## Build Tools We Used
+## Build Tools We Used 	:ok_hand:
 #### Multi-platform dan Back-End
 * IDE [Visual Studio Code](https://code.visualstudio.com/)
 * Framework [Flutter](https://flutter.dev/)
 * Language [Dart](https://dart.dev/)
-* API [FlutterStorege](https://firebase.google.com/products/firestore)
+* API [Firebase Firestore](https://firebase.google.com/products/firestore)
 
-## Contributing   
+## Collaboration :clap:
 Projek ini di buat 4 orang dari peserta Studi Indepent ** Kampus Merdeka X Dicoding ** .
 Nama Anggota:
 * P324x0873 - Muhammad Reza Pratika Putra
