@@ -43,7 +43,7 @@ Melihat postingan informasi melalui sosial media banyaknya lingkungan yang sehar
 ## Collaboration :clap:
 Projek ini di buat 4 orang dari peserta Studi Indepent ** Kampus Merdeka X Dicoding ** .
 Nama Anggota:
-* P324x0873 - Muhammad Reza Pratika Putra <a href="https://github.com/rezapratika"<strong>GitHub »</strong></a>  <a href="www.linkedin.com/in/muhammad-reza-pratika-putra-173b43256"><strong>Linkedln »</strong></a>
+* P324x0873 - Muhammad Reza Pratika Putra  <a href="https://github.com/rezapratika"><strong>GitHub »</strong></a> <a href="www.linkedin.com/in/muhammad-reza-pratika-putra-173b43256"><strong>Linkedln »</strong></a>
 * P211x0431 - Zaehaykal <a href="https://github.com/zaehaykal"><strong>GitHub »</strong></a>   <a href="https://www.linkedin.com/in/zaehaykal-518a99255/"><strong>Linkedln »</strong></a>
 * P211x0428 - Rama Handika
 * P324x0875 - Nanda Sudarman
