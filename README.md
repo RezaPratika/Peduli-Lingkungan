@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <p align="center">
   <br>
-  <img  width="280px" src="https://github.com/RezaPratika/Peduli-Lingkungan/blob/main/aplikasi%20user/assets/logoPictureWithName.png" />
+  <img  width="280px" src="https://user-images.githubusercontent.com/100017699/206892679-d552d749-f84d-4e91-8bd7-bfbe8b7de845.jpg" />
   <h3 align="center">Peduli Lingkunagn</h3>
   <p align="center">
     Peduli Lingkungan adalah sebuah aplikasi yang dapat menjadi jembatan untuk menghadirkan solusi atas tercemarnya sungai. Produk kami disini adalah sebuah jembatan bagi masyarakat yang memiliki kepedulian terhadap lingkungan khususnya masalah penumpukan sampah pada lingkungan namun masyarakat tersebut tidak memiliki tenaga yang mencukupi, untuk bisa mengatasi masalah tersebut. Disini kami mensimulasikan dimana kami adalah pihak pemerintahan yang memiliki sistem dari Peduli Lingkungan, sistem ini dapat digunakan bagi masyarakat untuk melaporkan keadaan lingkungan yang terjadi penumpukan sampah dengan menyertakan foto lingkungan beserta detail penjelasan, lokasi, dan nama pelapor, serta nomor hp dari masyarakat yang melaporkan masalah yang ditemukan, dimana laporan yang telah diberikan akan ditindak lanjuti oleh kami (simulasi pihak pemerintahan) untuk dapat segera diatasi masalah tersebut.
@@ -43,7 +43,7 @@ Melihat postingan informasi melalui sosial media banyaknya lingkungan yang sehar
 ## Collaboration :clap:
 Projek ini di buat 4 orang dari peserta Studi Indepent ** Kampus Merdeka X Dicoding ** .
 Nama Anggota:
-* P324x0873 - Muhammad Reza Pratika Putra
+* P324x0873 - Muhammad Reza Pratika Putra <a href="https://github.com/rezapratika"<strong>GitHub »</strong></a>  <a href="www.linkedin.com/in/muhammad-reza-pratika-putra-173b43256"><strong>Linkedln »</strong></a>
 * P211x0431 - Zaehaykal <a href="https://github.com/zaehaykal"><strong>GitHub »</strong></a>   <a href="https://www.linkedin.com/in/zaehaykal-518a99255/"><strong>Linkedln »</strong></a>
 * P211x0428 - Rama Handika
 * P324x0875 - Nanda Sudarman
