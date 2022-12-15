@@ -12,7 +12,7 @@
     <br>
     <a href="https://github.com/RezaPratika/Peduli-Lingkungan/tree/main/aplikasi-admin"><strong>Explore the document Admin »</strong></a></br>
     <br>
-    <a href="https://github.com/RezaPratika/https://github.com/RezaPratika/Peduli-Lingkungan/tree/main/aplikasi-user"><strong>Explore the document User »</strong></a></br>
+    <a href="https://github.com/RezaPratika/Peduli-Lingkungan/tree/main/aplikasi-user"><strong>Explore the document User »</strong></a></br>
    
   </p>
 </p>
